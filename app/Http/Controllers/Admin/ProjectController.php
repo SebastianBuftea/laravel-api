@@ -113,7 +113,10 @@ class ProjectController extends Controller
             $path = Storage::disk('public')->put('project_image', $form_data['mockup_image']);
             $form_data['mockup_image'] = $path;
             $project->mockup_image = $form_data['mockup_image'];
-        }
+        } else {
+            $project->mockup_image = null;
+        };
+
         $slug = Str::slug($project->title, '-');
         $project->slug = $slug;
         $project->type_id = $form_data['type_id'];
